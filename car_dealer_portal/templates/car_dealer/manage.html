@@ -1,0 +1,84 @@
+{% block content %}
+
+<html>
+
+<head>
+  <title>tripshare | Login Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
+  </style>
+</head>
+
+<body class="relative  bg-cover bg-bottom bg-no-repeat text-center"
+  style="background-image: url('https://i.ibb.co/r0xK3fN/Bg.png'); height: '100vh'; object-fit: cover;">
+  <header class="text-black body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex bg-transparent title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/manage_vehicles/">Vehicles</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings</a>
+        <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
+        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/car_dealer_portal/logout/">Logout</a>
+      </nav>
+      <!-- <button
+            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button> -->
+
+
+    </div>
+  </header>
+  <h3 class="w3-center text-blue-900" style="padding-top:30 "><b>Posted Vehicles</b></h3>
+  <div style="padding:18">
+    <table class="w3-table bg-white mx-auto text-black w3-striped w3-center">
+
+      <tr>
+        <th style="padding:20;">Car </th>
+        <th style="padding:20;">Color </th>
+        <th style="padding:20;">Capacity </th>
+        <th style="padding:20;">Pincode </th>
+        <th style="padding:20;">Address</th>
+        <th style="padding:20;">Action</th>
+      </tr>
+      {% for vehicle in vehicle_list %}
+      <tr>
+        <td>{{vehicle.car_name}}</td>
+        <td>{{vehicle.color}}</td>
+        <td>{{vehicle.capacity}} Seats</td>
+        <td>{{vehicle.area.pincode}}</td>
+        <td>{{vehicle.area.city}}</td>
+        <td>
+          <form action="/car_dealer_portal/delete/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{vehicle.id}}">
+            <input class="w3-btn w3-red" type="submit" value="Delete">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+
+</html>
+
+
+
+{% endblock %}
