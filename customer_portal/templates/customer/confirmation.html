@@ -53,11 +53,22 @@
         <form class="w3-container" action="/customer_portal/confirmed/" method="post">
           {% csrf_token %}
           <b>Price : ${{cost_per_day}} per day</b><br><br>
-          <lable class="mb-2">Where are you going?</lable> <input type="text" placeholder="city name"
-            class="input input-bordered bg-white w-80" name="final" /> <br><br>
+          <div class="flex space-x-3">
+            <div>
+              <label for="mb-2" class="text-start">start_destination</label>
+              <input type="text" class="input input-bordered bg-white" placeholder="start_destination"
+                name="start_destination" />
+            </div>
+            <div>
+              <label for="mb-2" class="text-start">final_destination</label>
+              <input type="text" class="input input-bordered bg-white" placeholder="final_destination"
+                name="final_destination" />
+            </div>
+          </div>
+          <br><br>
 
           <lable class="mb-2">distance?</lable> <input type="text" placeholder="3"
-            class="input input-bordered bg-white w-80" name="days" /> <br><br>
+            class="input input-bordered bg-white w-80" name="distance" /> <br><br>
           <input class="w3-btn w3-teal btn btn-primary bg-blue-900" type="submit" value="Confirm My Order"><br><br>
           <input type="hidden" value="{{vehicle.id}}" name="id">
           <br><br>

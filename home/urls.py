@@ -7,4 +7,5 @@ from customer_portal import *
 urlpatterns = [
     re_path(r'^$',home_page),
     re_path(r'^team/',team_page),
+    re_path(r'^contact/',contact_page),
 ]

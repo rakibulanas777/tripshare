@@ -1,17 +1,62 @@
-{% extends 'car_dealer/base.html' %}
 {% block content %}
 {% csrf_token %}
-<div class="w3-bar w3-black">
-  <div class="w3-bar-item w3-left">Registration Form</div>
-  <a class="w3-bar-item w3-right w3-btn w3-teal" href="/customer_portal/login/">Login</a>
-  <a class="w3-bar-item w3-right w3-btn w3-teal" href="/">Home</a>
-</div>
-<div class="w3-center">
-<p class="w3-large">
-Registered Successfully !
-</p>
-<p class="w3-large">
-Now go to the <a class="w3-btn w3-teal" href="/customer_portal/login/">Login Page<a> and Login !
-</p>
-</div>
+
+<html>
+
+<head>
+  <title>tripshare</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
+  </style>
+</head>
+
+<body class="relative overflow-hidden  bg-cover bg-bottom bg-no-repeat text-center"
+  style="background-image: url('https://i.ibb.co/r0xK3fN/Bg.png'); height: '100vh'; object-fit: cover;">
+  <header class="text-black body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class="ml-3 text-xl text-black font-bold">TRIPSHARE</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/team">team</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/contact">contact</a>
+      </nav>
+    </div>
+  </header>
+  <div class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
+      <div
+        class="w-full backdrop-filter p-8 backdrop-blur-md bg-opacity-70 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-sm xl:p-0 animate__animated animate__fadeInUp ">
+        <div class="w3-center p-8">
+          <p class="w3-large text-blue-900 font-medium text-center">
+            Registered Successfully !
+          </p>
+          <p class="w3-large text-center">
+            Now go to the <a class="w3-btn btn btn-primary bg-blue-900 text-white font-medium w3-teal"
+              href="/customer_portal/login/">Login
+              Page<a> and Login !
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+
+
+
+
 {% endblock %}

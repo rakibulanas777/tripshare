@@ -15,5 +15,7 @@ class Orders(models.Model):
     car_dealer = models.ForeignKey(CarDealer, on_delete=models.PROTECT)
     rent = models.CharField(max_length=8)
     vehicle = models.ForeignKey(Vehicles, on_delete=models.PROTECT)
-    days = models.CharField(max_length = 3)
+    start_destination = models.CharField(max_length = 30)
+    final_destination = models.CharField(max_length = 30)
+    distance = models.CharField(max_length = 3)
     is_complete = models.BooleanField(default = False)

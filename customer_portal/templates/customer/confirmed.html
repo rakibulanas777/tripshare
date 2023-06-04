@@ -49,17 +49,18 @@
   <div class="py-10">
     <div class="absolute top-1/2  left-1/2 -translate-y-1/2 -translate-x-1/2">
       <div
-        class="w3-display-container backdrop-filter backdrop-blur-md bg-opacity-70 p-8 text-black text-xl text-center bg-white"
-        style="height:400px;">
+        class="w3-display-container backdrop-filter backdrop-blur-md bg-opacity-70 p-8 text-black text-xl text-center bg-white">
         <div class="w3-display-middle">
           <h3><b>Order Completed</b></h3>
           <b>Your Vehicle Order Has Been Processed!</b><br><br>
           <b>Total Rent :</b> ${{order.rent}}<br><br>
           <b>Vehicle :</b> {{order.vehicle.car_name}}<br><br>
-          <b>Duration :</b> {{order.days}} days<br><br>
-          <b>Car-Dealer :</b> {{order.car_dealer.car_dealer.first_name}}
+          <b>start_destination :</b> {{order.start_destination}}<br><br>
+          <b>final_destination :</b> {{order.final_destination}}<br><br>
+          <b>Duration :</b> {{order.distance}} distance<br><br>
+          <b>Driver :</b> {{order.car_dealer.car_dealer.first_name}}
           {{order.car_dealer.car_dealer.last_name}}<br><br>
-          <b>Car-Dealer's Contact:</b> {{order.car_dealer.mobile}}<br><br>
+          <b>Driver's Contact:</b> {{order.car_dealer.mobile}}<br><br>
         </div>
       </div>
     </div>

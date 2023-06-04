@@ -30,7 +30,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('rent', models.CharField(max_length=8)),
-                ('days', models.CharField(max_length=3)),
+                ('distance', models.CharField(max_length=3)),
+                ('start_destination', models.CharField(max_length=30)),
+                ('final_destination', models.CharField(max_length=30)),
                 ('car_dealer', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='car_dealer_portal.CarDealer')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL)),
                 ('vehicle', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, to='car_dealer_portal.Vehicles')),

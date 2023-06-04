@@ -106,18 +106,20 @@ def confirm(request):
     vehicle_id = request.POST['id']
     username = request.user
     user = User.objects.get(username = username)
-    days = request.POST['days']
+    distance = request.POST['distance']
+    start_destination = request.POST.get('start_destination')
+    final_destination = request.POST.get('final_destination')
     vehicle = Vehicles.objects.get(id = vehicle_id)
     if vehicle.is_available:
         car_dealer = vehicle.dealer
-        rent = (int(vehicle.capacity))*13*(int(days))
+        rent = (int(vehicle.capacity))*13*(int(distance))
         car_dealer.wallet += rent
         car_dealer.save()
         try:
-            order = Orders(vehicle = vehicle, car_dealer = car_dealer, user = user, rent=rent, days=days)
+            order = Orders(vehicle = vehicle, car_dealer = car_dealer, user = user, rent=rent, distance=distance,start_destination=start_destination,final_destination=final_destination)
             order.save()
         except:
-            order = Orders.objects.get(vehicle = vehicle, car_dealer = car_dealer, user = user, rent=rent, days=days)
+            order = Orders.objects.get(vehicle = vehicle, car_dealer = car_dealer, user = user, rent=rent, distance=distance,start_destination=start_destination,final_destination=final_destination)
         vehicle.is_available = False
         vehicle.save()
         return render(request, 'customer/confirmed.html', {'order':order})
@@ -135,7 +137,7 @@ def manage(request):
     if orders is not None:
         for o in orders:
             if o.is_complete == False:
-                order_dictionary = {'id':o.id,'rent':o.rent, 'vehicle':o.vehicle, 'days':o.days, 'car_dealer':o.car_dealer}
+                order_dictionary = {'id':o.id,'rent':o.rent, 'vehicle':o.vehicle, 'distance':o.distance,'start_destination':o.start_destination,'final_destination':o.final_destination, 'car_dealer':o.car_dealer}
                 order_list.append(order_dictionary)
     return render(request, 'customer/manage.html', {'od':order_list})
 

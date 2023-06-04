@@ -24,23 +24,17 @@
           viewBox="0 0 24 24">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
-        <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
+        <span class="ml-3 text-xl text-black font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
 
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/manage_vehicles/">Vehicles</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/customer_portal/auth/">Home</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/customer_portal/manage/">Manage</a>
+
         <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
-        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/car_dealer_portal/logout/">Logout</a>
+        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/customer_portal/logout/">Logout</a>
       </nav>
-      <!-- <button
-            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button> -->
+
 
 
     </div>
@@ -52,7 +46,9 @@
 
       <tr>
         <th style="padding:20;">Car</th>
-        <th style="padding:20;">Days</th>
+        <th style="padding:20;">start_destination</th>
+        <th style="padding:20;">final_destination</th>
+        <th style="padding:20;">Distance</th>
         <th style="padding:20;">Rent</th>
         <th style="padding:20;">Capacity</th>
         <th style="padding:20;">Description</th>
@@ -62,7 +58,9 @@
       {% for order in od %}
       <tr>
         <td>{{order.vehicle.car_name}}</td>
-        <td>{{order.days}}</td>
+        <td>{{order.start_destination}}</td>
+        <td>{{order.final_destination}}</td>
+        <td>{{order.distance}}</td>
         <td>${{order.rent}}</td>
         <td>{{order.vehicle.capacity}} Seats</td>
         <td>{{order.vehicle.description}}</td>
@@ -71,7 +69,7 @@
           <form action="/customer_portal/delete/" method="post">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{order.id}}">
-            <input class="w3-btn w3-red" type="submit" value="Delete">
+            <input class="w3-btn w3-red btn bg-red-500" type="submit" value="Delete">
           </form>
           <!--   
       <form action = "/customer_portal/update/" method="post">

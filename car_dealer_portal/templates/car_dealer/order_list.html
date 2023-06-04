@@ -24,7 +24,7 @@
           viewBox="0 0 24 24">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
-        <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
+        <span class="ml-3 text-xl text-black font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
         <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/auth/">home</a>
@@ -34,15 +34,6 @@
         <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
         <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/car_dealer_portal/logout/">Logout</a>
       </nav>
-      <!-- <button
-          class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </button> -->
-
-
     </div>
   </header>
   <div class="py-10 animate__animated animate__fadeIn">
@@ -50,23 +41,27 @@
     <div style="padding:18">
       <table class="w3-table bg-white text-black text-center mx-auto w3-striped w3-center">
 
-
         <tr>
-          <th style="padding:20" class="text-black">Name </th>
-          <th style="padding:20" class="text-black">Color</th>
-          <th style="padding:20" class="text-black">Rental Amount </th>
-          <th style="padding:20" class="text-black">Days </th>
-          <th style="padding:20" class="text-black">Action
-          </th>
+          <th style="padding:20;">Car</th>
+          <th style="padding:20;">start_destination</th>
+          <th style="padding:20;">final_destination</th>
+          <th style="padding:20;">Distance</th>
+          <th style="padding:20;">Rent</th>
+
+          <th style="padding:20;">Action</th>
+
         </tr>
 
         {% for order in order_list %}
 
         <tr>
           <td>{{order.vehicle.car_name}}</td>
-          <td>{{order.vehicle.color}}</td>
+          <td>{{order.start_destination}}</td>
+          <td>{{order.final_destination}}</td>
+          <td>{{order.distance}}</td>
           <td>${{order.rent}}</td>
-          <td>{{order.days}}</td>
+
+
           <td>
             <form action="/car_dealer_portal/complete/" method="post">
               {% csrf_token %}
