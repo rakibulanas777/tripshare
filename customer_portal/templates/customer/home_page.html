@@ -26,13 +26,13 @@
           viewBox="0 0 24 24">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
-        <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
+        <span class="ml-3 text-xl text-black font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
 
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/customer_portal/auth/">Home</a>
         <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/customer_portal/manage/">Manage</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings</a>
+
         <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
         <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/customer_portal/logout/">Logout</a>
       </nav>
@@ -53,9 +53,7 @@
       <form action="/customer_portal/search/" mehtod="POST">{% csrf_token %}
         <button
           class="bg-white py-3 px-5 text-purple-500 active:scale-90 transition duration-150 transform hover:shadow-xl shadow-md animate__animated rounded-md animate__zoomIn font-semibold gap-2">
-          Search for
-          Rental
-          Cars
+          Start a trip
         </button>
       </form>
 

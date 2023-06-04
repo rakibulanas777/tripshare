@@ -29,12 +29,12 @@
         <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/customer_portal/manage/">Home</a>
         <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/customer_portal/manage/">Manage</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings</a>
+
         <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
         <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/customer_portal/logout/">Logout</a>
+
       </nav>
       <!-- <button
           class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
@@ -68,16 +68,16 @@
         </tr>
         {% for vehicle in request.session.vehicles_list %}
         <tr>
-          <td>{{vehicle.name}}</td>
-          <td>{{vehicle.color}}</td>
-          <td>{{vehicle.capacity}}</td>
-          <td>{{vehicle.description}}</td>
-          <td>{{vehicle.pincode}}</td>
+          <td style="padding:20">{{vehicle.name}}</td>
+          <td style="padding:20">{{vehicle.color}}</td>
+          <td style="padding:20">{{vehicle.capacity}}</td>
+          <td style="padding:20">{{vehicle.description}}</td>
+          <td style="padding:20">{{vehicle.pincode}}</td>
           <td>
             <form action="/customer_portal/rent/" method="post">
               {% csrf_token %}
               <input type="hidden" name="id" value="{{vehicle.id}}">
-              <input class="w3-btn w3-green" type="submit" value="Rent">
+              <input class="w3-btn w3-green btn btn-primary bg-blue-900" type="submit" value="start">
             </form>
           </td>
         </tr>

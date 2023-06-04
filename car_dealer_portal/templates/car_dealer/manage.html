@@ -27,7 +27,7 @@
         <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/auth/">home</a>
         <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
         <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/manage_vehicles/">Vehicles</a>
         <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings</a>
@@ -59,16 +59,16 @@
       </tr>
       {% for vehicle in vehicle_list %}
       <tr>
-        <td>{{vehicle.car_name}}</td>
-        <td>{{vehicle.color}}</td>
-        <td>{{vehicle.capacity}} Seats</td>
-        <td>{{vehicle.area.pincode}}</td>
-        <td>{{vehicle.area.city}}</td>
+        <td style="padding:20;">{{vehicle.car_name}}</td>
+        <td style="padding:20;">{{vehicle.color}}</td>
+        <td style="padding:20;">{{vehicle.capacity}} Seats</td>
+        <td style="padding:20;">{{vehicle.area.pincode}}</td>
+        <td style="padding:20;">{{vehicle.area.city}}</td>
         <td>
           <form action="/car_dealer_portal/delete/" method="post">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{vehicle.id}}">
-            <input class="w3-btn w3-red" type="submit" value="Delete">
+            <input class="w3-btn w3-red btn bg-red-500 text-white font-medium" type="submit" value="Delete">
           </form>
         </td>
       </tr>

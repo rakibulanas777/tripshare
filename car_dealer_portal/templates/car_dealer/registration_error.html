@@ -1,4 +1,48 @@
-{% extends 'car_dealer/base.html'%}
 {% block content %}
-<p>username already exists, try using a different username. <a href="/car_dealer_portal/login/">login page</a></p>
+{% csrf_token %}
+<html>
+
+<head>
+    <title>tripshare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css');
+    </style>
+</head>
+
+<body class="relative  bg-cover bg-bottom bg-no-repeat text-center"
+    style="background-image: url('https://i.ibb.co/r0xK3fN/Bg.png'); height: '100vh'; object-fit: cover;">
+    <header class="text-black body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                    viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/team">team</a>
+                <a class="mr-5 hover:text-blue-900 cursor-pointer">Second Link</a>
+            </nav>
+
+        </div>
+    </header>
+    <div class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+        <div class="w3-display-container" style="height:300px;">
+            <div class="w3-display-middle text-2xl text-blue-900 font-bold">
+                <p>username already exists, try using a different username. </p>
+
+                <a href="/car_dealer_portal/login/" class="btn btn-primary bg-blue-900 ">login page</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
 {% endblock %}

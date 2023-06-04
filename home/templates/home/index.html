@@ -27,36 +27,24 @@
         <span class="ml-3 text-xl text-white font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <a class="mr-5 hover:text-blue-900  cursor-pointer">First Link</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer">Second Link</a>
+        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/team">team</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer">contact</a>
       </nav>
-      <!-- <button
-        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg>
-      </button> -->
     </div>
   </header>
   <div class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
     <div class="flex h-full space-x-10 items-center justify-center">
-      <form action="/customer_portal/login/" mehtod="POST">{% csrf_token %}
-        <button
-          class="bg-white py-3 px-5 animate__animated animate__zoomIn shadow-md text-purple-500 active:scale-90 transition duration-150 transform hover:shadow-xl rounded-md font-semibold gap-2">
-          User Login
-        </button>
-      </form>
+
       <form action="/customer_portal/login/" mehtod="POST">{% csrf_token %}
         <button
           class="bg-white py-3 px-5 text-purple-500 active:scale-90 transition duration-150 transform hover:shadow-xl shadow-md animate__animated rounded-md animate__zoomIn font-semibold gap-2">
-          Driver Login
+          User Login
         </button>
       </form>
       <form class="w3-container w3-center" action="/car_dealer_portal/login/" method="POST">{% csrf_token %}
         <button
           class="bg-white py-3 px-5 shadow-md text-purple-500 active:scale-90 transition duration-150 transform hover:shadow-xl rounded-md animate__animated animate__zoomIn  font-semibold gap-2">
-          Dealer Login
+          Driver Login
         </button>
       </form>
 
