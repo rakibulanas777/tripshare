@@ -1,5 +1,5 @@
 from django.urls import path,include, re_path
-from car_dealer_portal.views import *
+from driver_portal.views import *
 # from django.conf.urls import url
 
 urlpatterns = [

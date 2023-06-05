@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'customer_portal.apps.CustomerPortalConfig',
-    'car_dealer_portal.apps.CarDealerPortalConfig',
+    'driver_portal.apps.CarDriverPortalConfig',
     'home.apps.HomeConfig',
 
 ]

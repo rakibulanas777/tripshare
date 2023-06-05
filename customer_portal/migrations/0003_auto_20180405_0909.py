@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='orders',
-            name='car_dealer',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='car_dealer_portal.CarDealer'),
+            name='driver_portal',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='driver_portal.CarDriver'),
         ),
         migrations.AlterField(
             model_name='orders',
@@ -25,6 +25,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='orders',
             name='vehicle',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='car_dealer_portal.Vehicles'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='driver_portal.Vehicles'),
         ),
     ]

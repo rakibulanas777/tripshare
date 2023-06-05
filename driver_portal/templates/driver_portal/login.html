@@ -41,7 +41,7 @@
             Sign in to your account
           </h1>
 
-          <form class="space-y-4 md:space-y-6" action="/car_dealer_portal/auth/" method="POST">{% csrf_token %}
+          <form class="space-y-4 md:space-y-6" action="/driver_portal/auth/" method="POST">{% csrf_token %}
             <div>
               <label for="username" class="block mb-2 text-start text-blue-900 text-sm font-medium">Username</label>
               <input type="text" name="username" id="username"
@@ -60,7 +60,7 @@
               in</button>
           </form>
           <p class="text-sm font-light text-blue-900">
-            Don’t have an account yet? <a href="/car_dealer_portal/register/" class="font-medium text-blue-900">Register
+            Don’t have an account yet? <a href="/driver_portal/register/" class="font-medium text-blue-900">Register
               as
               Driver</a>
           </p>

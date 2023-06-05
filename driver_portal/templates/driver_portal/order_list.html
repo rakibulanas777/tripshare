@@ -1,5 +1,5 @@
 {% block content %}
-{% csrf_token %}
+
 <html>
 
 <head>
@@ -27,30 +27,52 @@
         <span class="ml-3 text-xl text-black font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/auth/">home</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/manage_vehicles/">Vehicles</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/auth/">home</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/order_list/">Orders</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/manage_vehicles/">Vehicles</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/history/">Earnings :${{wallet}}</a>
         <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
-        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/car_dealer_portal/logout/">Logout</a>
+        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/driver_portal/logout/">Logout</a>
       </nav>
-      <!-- <button
-              class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            </button> -->
-
-
     </div>
   </header>
-  <div class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
-    <div class="w3-display-container" style="height:300px;">
-      <div class="w3-display-middle text-2xl text-blue-900 font-bold">
-        Vehicle Details Added! <br><br>
-        <a href="/car_dealer_portal/index/" class="btn btn-primary bg-blue-900 ">Back To Home Page</a>
-      </div>
+  <div class="py-10 animate__animated animate__fadeIn">
+    <h3 class="w3-center text-blue-900 font-bold" style="padding-top:30"><b>User's Order List</b></h3>
+    <div style="padding:18">
+      <table class="w3-table bg-white text-black text-center mx-auto w3-striped w3-center">
+
+        <tr>
+          <th style="padding:20;">Car</th>
+          <th style="padding:20;">start_destination</th>
+          <th style="padding:20;">final_destination</th>
+          <th style="padding:20;">Distance</th>
+          <th style="padding:20;">Rent</th>
+
+          <th style="padding:20;">Action</th>
+
+        </tr>
+
+        {% for order in order_list %}
+
+        <tr>
+          <td>{{order.vehicle.car_name}}</td>
+          <td>{{order.start_destination}}</td>
+          <td>{{order.final_destination}}</td>
+          <td>{{order.distance}}</td>
+          <td>${{order.rent}}</td>
+
+
+          <td>
+            <form action="/driver_portal/complete/" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{order.id}}">
+              <input class="w3-btn w3-indigo btn btn-green-700" type="submit" value="Complete">
+            </form>
+          </td>
+        </tr>
+
+        {% endfor %}
+      </table>
     </div>
   </div>
 </body>

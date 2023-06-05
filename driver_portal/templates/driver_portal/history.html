@@ -27,12 +27,12 @@
         <span class="ml-3 text-xl text-black font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/auth/">home</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/manage_vehicles/">Vehicles</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings :${{wallet}}</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/auth/">home</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/order_list/">Orders</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/manage_vehicles/">Vehicles</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/driver_portal/history/">Earnings :${{wallet}}</a>
         <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
-        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/car_dealer_portal/logout/">Logout</a>
+        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/driver_portal/logout/">Logout</a>
       </nav>
 
 
@@ -62,7 +62,7 @@
           <td>{{order.final_destination}}</td>
           <td>{{order.vehicle.capacity}}</td>
           <td>
-            <form action="/car_dealer_portal/complete/" method="post">
+            <form action="/driver_portal/complete/" method="post">
               {% csrf_token %}
             </form>
           </td>

@@ -1,11 +1,8 @@
 {% block content %}
-{% load static %}
-
-
 <html>
 
 <head>
-  <title>tripshare</title>
+  <title>tripshare | register</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
@@ -16,11 +13,36 @@
   </style>
 </head>
 
-<body class="relative  bg-cover bg-bottom bg-no-repeat text-center"
-  style="background-image: url('https://i.ibb.co/r0xK3fN/Bg.png'); height: '100vh'; object-fit: cover;">
+<body class="relative   bg-cover bg-bottom bg-no-repeat text-center"
+  style="background-image: url('https://i.ibb.co/r0xK3fN/Bg.png'); height: '130vh'; object-fit: cover;">
+  <!-- <div class="w3-bar">
+
+    <a class="w3-bar-item w3-right w3-btn w3-teal" href="/driver_portal/login/">Login</a>
+    <a class="w3-bar-item w3-right w3-btn w3-teal" href="/">Home</a>
+  </div>
+  <div class="w3-display-container" style="height:1000px;">
+    <div class="w3-display-middle">
+
+      <b>
+        <h2>Registration Form</h2>
+      </b>
+
+      <form class="w3-container" action="/driver_portal/registration/" method="POST">{% csrf_token %}
+        <lable>First Name</lable> <input class="w3-input" type="text" name="firstname"><br><br>
+        <lable>Last Name</lable> <input class="w3-input" type="text" name="lastname"><br><br>
+        <lable>Username</lable> <input class="w3-input" type="text" name="username"><br><br>
+        <lable>Password</lable> <input class="w3-input" type="password" name="password"><br><br>
+        <lable>Email</lable> <input class="w3-input" type="text" name="email"><br><br>
+        <lable>Contact</lable> <input class="w3-input" type="text" name="mobile"><br><br>
+        <lable>City</lable> <input class="w3-input" type="text" name="city"><br><br>
+        <lable>Pincode</lable> <input class="w3-input" type="text" name="pincode"><br><br>
+        <input class="w3-btn w3-teal" type="submit"><br><br>
+      </form>
+    </div>
+  </div> -->
   <header class="text-black body-font">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <a class="flex bg-transparent title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" href="/">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
           stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
           viewBox="0 0 24 24">
@@ -29,17 +51,9 @@
         <span class="ml-3 text-xl text-black font-bold">TRIPSHARE</span>
       </a>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/auth/">home</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/order_list/">Orders</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/manage_vehicles/">Vehicles</a>
-        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/car_dealer_portal/history/">Earnings</a>
-        <a class="mr-5 hover:text-blue-900  cursor-pointer">{{user.username}}</a>
-        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/car_dealer_portal/logout/">Logout</a>
+        <a class="mr-5 hover:text-blue-900  cursor-pointer" href="/team">team</a>
+        <a class="mr-5 hover:text-blue-900 cursor-pointer" href="/contact">contact</a>
       </nav>
-
-
-
     </div>
   </header>
   <div class="py-10">
@@ -50,49 +64,83 @@
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8 ">
 
           <h1 class="text-xl   font-bold leading-tight text-blue-900">
-            Add vehicle
+            Driver registered
           </h1>
 
-          <form class=" flex flex-col md:space-y-3" action="/car_dealer_portal/add_vehicle/" method="POST">
+          <form class=" flex flex-col md:space-y-3" action="/driver_portal/registration/" method="POST">
             {% csrf_token %}
-            <div class="w-full text-start mb-2">
-              <label for="" class="text-xs text-start text-blue-900 font-semibold px-1">Car Name</label>
-              <div class="flex bg-slate-50 glass">
-                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                  <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                </div>
-                <input type="text"
-                  class="w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  name="car_name" placeholder="Car Name">
-              </div>
-            </div>
-
-
             <div class="flex -mx-3">
               <div class="w-1/2 text-start px-3 mb-2">
-                <label for="" class="text-xs  text-blue-900 font-semibold px-1">Capacity (Seats)</label>
+                <label for="" class="text-xs  text-blue-900 font-semibold px-1">First name</label>
                 <div class="flex bg-slate-50 glass">
                   <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                     <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
                   </div>
                   <input type="text"
                     class="w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                    name="capacity" placeholder="Capacity">
+                    name="firstname" placeholder="John">
                 </div>
               </div>
               <div class="w-1/2 text-start px-3 mb-2">
-                <label for="" class="text-xs text-start font-semibold px-1">Color</label>
+                <label for="" class="text-xs text-start font-semibold px-1">Last name</label>
                 <div class="flex">
                   <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                     <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
                   </div>
                   <input type="text"
                     class="w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                    name='color' placeholder="Color">
+                    name='lastname' placeholder="Smith">
                 </div>
               </div>
             </div>
 
+            <div class="w-full text-start mb-2">
+              <label for="" class="text-xs text-start text-blue-900 font-semibold px-1">Email</label>
+              <div class="flex bg-slate-50 glass">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                  <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                </div>
+                <input type="text"
+                  class="w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  name="email" placeholder="John">
+              </div>
+            </div>
+
+            <div class="flex -mx-3">
+              <div class="w-1/2 text-start px-3 mb-2">
+                <label for="" class="text-xs text-start text-blue-900 font-semibold px-1">Username</label>
+                <div class="flex bg-slate-50 glass">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                  </div>
+                  <input type="text"
+                    class="w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                    name="username" placeholder="username">
+                </div>
+              </div>
+              <div class="w-1/2 text-start px-3 mb-2">
+                <label for="" class="text-xs text-start font-semibold px-1">Password</label>
+                <div class="flex">
+                  <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                    <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                  </div>
+                  <input type="password"
+                    class="w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                    name='password' placeholder="**********">
+                </div>
+              </div>
+            </div>
+            <div class="w-full text-start mb-2">
+              <label for="" class="text-xs text-start text-blue-900 font-semibold px-1">Mobile</label>
+              <div class="flex bg-slate-50 glass">
+                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                  <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                </div>
+                <input type="text"
+                  class="w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  name="mobile" placeholder="mobile">
+              </div>
+            </div>
             <div class="flex -mx-3">
               <div class="w-1/2 text-start px-3 mb-2">
                 <label for="" class="text-xs  text-blue-900 font-semibold px-1">City</label>
@@ -117,23 +165,16 @@
                 </div>
               </div>
             </div>
-            <div class="w-full text-start mb-2">
-              <label for="" class="text-xs text-start text-blue-900 font-semibold px-1">Description</label>
-              <div class="flex bg-slate-50 glass">
-                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                  <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                </div>
-                <textarea
-                  class="textarea w-full bg-white -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                  name="description" placeholder="Description"></textarea>
 
-              </div>
-            </div>
 
-            <button type="submit" class="w-full py-3 bg-blue-700 text-white hover:bg-primary-700 focus:ring-4 ">Add
-              Vehicle</button>
+            <button type="submit"
+              class="w-full py-3 bg-blue-700 text-white hover:bg-primary-700 focus:ring-4 ">register</button>
           </form>
-
+          <p class="text-sm font-light text-blue-900">
+            Already account? <a href="/driver_portal/login/" class="font-medium text-blue-900">log in
+              as
+              Driver</a>
+          </p>
 
         </div>
       </div>

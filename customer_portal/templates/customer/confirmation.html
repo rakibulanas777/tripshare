@@ -52,7 +52,7 @@
         <b>Car : {{vehicle.car_name}}</b>
         <form class="w3-container" action="/customer_portal/confirmed/" method="post">
           {% csrf_token %}
-          <b>Price : ${{cost_per_day}} per day</b><br><br>
+          <b>Price : ${{cost_per_day}} per kilometers</b><br><br>
           <div class="flex space-x-3">
             <div>
               <label for="mb-2" class="text-start">start_destination</label>

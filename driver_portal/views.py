@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib import auth
-from car_dealer_portal.models import *
+from driver_portal.models import *
 from customer_portal.models import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -11,37 +11,37 @@ from django.http import HttpResponseRedirect
 
 def index(request):
     if not request.user.is_authenticated:
-        return render(request, 'car_dealer/login.html')
+        return render(request, 'driver_portal/login.html')
     else:
-        return render(request, 'car_dealer/home_page.html')
+        return render(request, 'driver_portal/home_page.html')
 
 def login(request):
-    return render(request, 'car_dealer/login.html')
+    return render(request, 'driver_portal/login.html')
 
 
 def auth_view(request):
     if request.user.is_authenticated:
-        return render(request, 'car_dealer/home_page.html')
+        return render(request, 'driver_portal/home_page.html')
     else:
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         try:
-            car_dealer = CarDealer.objects.get(car_dealer = user)
+            driver_portal = CarDriver.objects.get(driver_portal = user)
         except:
-            car_dealer = None
-        if car_dealer is not None:
+            driver_portal = None
+        if driver_portal is not None:
             auth.login(request, user)
-            return render(request, 'car_dealer/home_page.html')
+            return render(request, 'driver_portal/home_page.html')
         else:
-            return render(request, 'car_dealer/login_failed.html')
+            return render(request, 'driver_portal/login_failed.html')
 
 def logout_view(request):
     auth.logout(request)
-    return render(request, 'car_dealer/login.html')
+    return render(request, 'driver_portal/login.html')
 
 def register(request):
-    return render(request, 'car_dealer/register.html')
+    return render(request, 'driver_portal/register.html')
 
 def registration(request):
     username = request.POST['username']
@@ -60,26 +60,26 @@ def registration(request):
         user.last_name = lastname
         user.save()
     except:
-        return render(request, 'car_dealer/registration_error.html')
+        return render(request, 'driver_portal/registration_error.html')
     try:
         area = Area.objects.get(city = city, pincode = pincode)
     except:
         area = None
     if area is not None:
-        car_dealer = CarDealer(car_dealer = user, mobile = mobile, area=area)
+        driver_portal = CarDriver(driver_portal = user, mobile = mobile, area=area)
     else:
         area = Area(city = city, pincode = pincode)
         area.save()
         area = Area.objects.get(city = city, pincode = pincode)
-        car_dealer = CarDealer(car_dealer = user, mobile = mobile, area=area)
-    car_dealer.save()
-    return render(request, 'car_dealer/registered.html')
+        driver_portal = CarDriver(driver_portal = user, mobile = mobile, area=area)
+    driver_portal.save()
+    return render(request, 'driver_portal/registered.html')
 
 @login_required
 def add_vehicle(request):
     car_name = request.POST['car_name']
     color = request.POST['color']
-    cd = CarDealer.objects.get(car_dealer=request.user)
+    cd = CarDriver.objects.get(driver_portal=request.user)
     city = request.POST['city']
     city = city.lower()
     pincode = request.POST['pincode']
@@ -97,30 +97,30 @@ def add_vehicle(request):
         area = Area.objects.get(city = city, pincode = pincode)
         car = Vehicles(car_name=car_name, color=color, dealer=cd, area = area,description=description, capacity=capacity)
     car.save()
-    return render(request, 'car_dealer/vehicle_added.html')
+    return render(request, 'driver_portal/vehicle_added.html')
 
 @login_required
 def manage_vehicles(request):
     username = request.user
     user = User.objects.get(username = username)
-    car_dealer = CarDealer.objects.get(car_dealer = user)
+    driver_portal = CarDriver.objects.get(driver_portal = user)
     vehicle_list = []
-    vehicles = Vehicles.objects.filter(dealer = car_dealer)
+    vehicles = Vehicles.objects.filter(dealer = driver_portal)
     for v in vehicles:
         vehicle_list.append(v)
-    return render(request, 'car_dealer/manage.html', {'vehicle_list':vehicle_list})
+    return render(request, 'driver_portal/manage.html', {'vehicle_list':vehicle_list})
 
 @login_required
 def order_list(request):
     username = request.user
     user = User.objects.get(username = username)
-    car_dealer = CarDealer.objects.get(car_dealer = user)
-    orders = Orders.objects.filter(car_dealer = car_dealer)
+    driver_portal = CarDriver.objects.get(driver_portal = user)
+    orders = Orders.objects.filter(driver_portal = driver_portal)
     order_list = []
     for o in orders:
         if o.is_complete == False:
             order_list.append(o)
-    return render(request, 'car_dealer/order_list.html', {'order_list':order_list})
+    return render(request, 'driver_portal/order_list.html', {'order_list':order_list})
 
 @login_required
 def complete(request):
@@ -131,22 +131,22 @@ def complete(request):
     order.save()
     vehicle.is_available = True
     vehicle.save()
-    return HttpResponseRedirect('/car_dealer_portal/order_list/')
+    return HttpResponseRedirect('/driver_portal/order_list/')
 
 
 @login_required
 def history(request):
     user = User.objects.get(username = request.user)
-    car_dealer = CarDealer.objects.get(car_dealer = user)
-    orders = Orders.objects.filter(car_dealer = car_dealer)
+    driver_portal = CarDriver.objects.get(driver_portal = user)
+    orders = Orders.objects.filter(driver_portal = driver_portal)
     order_list = []
     for o in orders:
         order_list.append(o)
-    return render(request, 'car_dealer/history.html', {'wallet':car_dealer.wallet, 'order_list':order_list})
+    return render(request, 'driver_portal/history.html', {'wallet':driver_portal.wallet, 'order_list':order_list})
 
 @login_required
 def delete(request):
     veh_id = request.POST['id']
     vehicle = Vehicles.objects.get(id = veh_id)
     vehicle.delete()
-    return HttpResponseRedirect('/car_dealer_portal/manage_vehicles/')
+    return HttpResponseRedirect('/driver_portal/manage_vehicles/')

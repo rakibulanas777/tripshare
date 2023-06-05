@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from customer_portal.models import *
 from django.contrib.auth.decorators import login_required
-from car_dealer_portal.models import *
+from driver_portal.models import *
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -111,15 +111,15 @@ def confirm(request):
     final_destination = request.POST.get('final_destination')
     vehicle = Vehicles.objects.get(id = vehicle_id)
     if vehicle.is_available:
-        car_dealer = vehicle.dealer
+        driver_portal = vehicle.dealer
         rent = (int(vehicle.capacity))*13*(int(distance))
-        car_dealer.wallet += rent
-        car_dealer.save()
+        driver_portal.wallet += rent
+        driver_portal.save()
         try:
-            order = Orders(vehicle = vehicle, car_dealer = car_dealer, user = user, rent=rent, distance=distance,start_destination=start_destination,final_destination=final_destination)
+            order = Orders(vehicle = vehicle, driver_portal = driver_portal, user = user, rent=rent, distance=distance,start_destination=start_destination,final_destination=final_destination)
             order.save()
         except:
-            order = Orders.objects.get(vehicle = vehicle, car_dealer = car_dealer, user = user, rent=rent, distance=distance,start_destination=start_destination,final_destination=final_destination)
+            order = Orders.objects.get(vehicle = vehicle, driver_portal = driver_portal, user = user, rent=rent, distance=distance,start_destination=start_destination,final_destination=final_destination)
         vehicle.is_available = False
         vehicle.save()
         return render(request, 'customer/confirmed.html', {'order':order})
@@ -137,7 +137,7 @@ def manage(request):
     if orders is not None:
         for o in orders:
             if o.is_complete == False:
-                order_dictionary = {'id':o.id,'rent':o.rent, 'vehicle':o.vehicle, 'distance':o.distance,'start_destination':o.start_destination,'final_destination':o.final_destination, 'car_dealer':o.car_dealer}
+                order_dictionary = {'id':o.id,'rent':o.rent, 'vehicle':o.vehicle, 'distance':o.distance,'start_destination':o.start_destination,'final_destination':o.final_destination, 'driver_portal':o.driver_portal}
                 order_list.append(order_dictionary)
     return render(request, 'customer/manage.html', {'od':order_list})
 
@@ -148,9 +148,9 @@ def update_order(request):
     vehicle = order.vehicle
     vehicle.is_available = True
     vehicle.save()
-    car_dealer = order.car_dealer
-    car_dealer.wallet -= int(order.rent)
-    car_dealer.save()
+    driver_portal = order.driver_portal
+    driver_portal.wallet -= int(order.rent)
+    driver_portal.save()
     order.delete()
     cost_per_day = int(vehicle.capacity)*13
     return render(request, 'customer/confirmation.html', {'vehicle':vehicle}, {'cost_per_day':cost_per_day})
@@ -159,9 +159,9 @@ def update_order(request):
 def delete_order(request):
     order_id = request.POST['id']
     order = Orders.objects.get(id = order_id)
-    car_dealer = order.car_dealer
-    car_dealer.wallet -= int(order.rent)
-    car_dealer.save()
+    driver_portal = order.driver_portal
+    driver_portal.wallet -= int(order.rent)
+    driver_portal.save()
     vehicle = order.vehicle
     vehicle.is_available = True
     vehicle.save()
