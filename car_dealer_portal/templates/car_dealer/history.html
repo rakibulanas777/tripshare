@@ -46,7 +46,9 @@
         <tr>
           <th style="padding:20">Name </th>
           <th style="padding:20">Rent </th>
-          <th style="padding:20">Days </th>
+          <th style="padding:20">Distance </th>
+          <th style="padding:20;">start_destination</th>
+          <th style="padding:20;">final_destination</th>
           <th style="padding:20">Seat</th>
           <th>
           </th>
@@ -56,6 +58,8 @@
           <td>{{order.vehicle.car_name}}</td>
           <td>${{order.rent}}</td>
           <td>{{order.distance}}</td>
+          <td>{{order.start_destination}}</td>
+          <td>{{order.final_destination}}</td>
           <td>{{order.vehicle.capacity}}</td>
           <td>
             <form action="/car_dealer_portal/complete/" method="post">
